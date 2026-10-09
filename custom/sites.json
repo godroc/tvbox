@@ -1,0 +1,14 @@
+[
+  {
+    "key": "my_yangshipin",
+    "name": "央视频 • 测试",
+    "type": 3,
+    "api": "./custom/py/yangshipin.py",
+    "searchable": 1,
+    "quickSearch": 0,
+    "filterable": 0,
+    "changeable": 0,
+    "timeout": 60,
+    "ext": {}
+  }
+]
