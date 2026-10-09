@@ -72,3 +72,11 @@ custom/sites.json 是维护用输入，不会被 OK影视自动合并；每次�
 - 自有脚本：custom/py/yangshipin.py；配置 api 为 ./custom/py/yangshipin.py。
 - 在点播站点选择“央视频 • 测试”，先测试“央视频道”的 CCTV-1，再测试“央视高码”。
 - 脚本使用标准库，播放依赖 OK影视提供 Python 本地代理与 getProxyUrl 功能。
+
+## 央视频已迁入直播栏目
+- 正式 my-tv.json 中央视频已从 sites 删除，新增 lives 项“央视频”。
+- custom/lives.json 是自有直播清单；生成工具按直播 name 覆盖或追加，保留其余上游直播。
+- 当前关闭 cast_entries，先验证普通央视频直播频道。
+- 刷新点播配置后进入直播，再在直播源选择列表切换“央视频”。如果设置了独立直播配置地址，也请将其改为同一个 my-tv.json 地址。
+- my-yangshipin-test.json 保留为历史排错入口，正式使用 my-tv.json。
+- 电视 3.5.9 的实际直播加载/播放效果需在客户端验证。

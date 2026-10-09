@@ -27,6 +27,20 @@ foreach ($site in $own) {
     $sites += $site
 }
 $base.sites = $sites
+$liveFile = Join-Path $PSScriptRoot 'lives.json'
+if (Test-Path -LiteralPath $liveFile) {
+    $ownLives = @(Get-Content -LiteralPath $liveFile -Raw -Encoding UTF8 | ConvertFrom-Json)
+    $liveNames = @{}
+    $mergedLives = @($base.lives)
+    foreach ($live in $ownLives) {
+        if (-not $live.name -or (-not $live.api -and -not $live.url)) { throw '自有直播缺少 name 或 api/url' }
+        if ($liveNames.ContainsKey([string]$live.name)) { throw "自有直播重复 name：$($live.name)" }
+        $liveNames[[string]$live.name] = $true
+        $mergedLives = @($mergedLives | Where-Object { $_.name -cne $live.name })
+        $mergedLives += $live
+    }
+    $base.lives = $mergedLives
+}
 # 所有 ./ 路径基于根目录 my-tv.json；逐项检查实际文件。
 function Check-Paths($value) {
     if ($null -eq $value) { return }
@@ -54,3 +68,4 @@ if ($spiderParts.Length -eq 3 -and $spiderParts[1] -eq 'md5' -and $spiderParts[0
 $json = $base | ConvertTo-Json -Depth 100
 [IO.File]::WriteAllText((Join-Path $root 'my-tv.json'), $json + [Environment]::NewLine, (New-Object Text.UTF8Encoding($false)))
 Write-Output "已生成 my-tv.json：$($sites.Count) 个站点；所有相对引用存在。jsm.json 未修改。"
+

@@ -1,0 +1,13 @@
+[
+  {
+    "name": "央视频",
+    "type": 0,
+    "api": "./custom/py/yangshipin.py",
+    "url": "",
+    "ext": {
+      "cast_entries": false
+    },
+    "playerType": 1,
+    "timeout": 60
+  }
+]
