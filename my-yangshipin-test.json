@@ -1,0 +1,16 @@
+{
+  "sites": [
+    {
+      "key": "my_yangshipin",
+      "name": "央视频 • 测试",
+      "type": 3,
+      "api": "https://cdn.jsdelivr.net/gh/godroc/tvbox@3388c6fe84cf7123cf50bb1a1fcbadf9eb47885f/custom/py/yangshipin.py",
+      "searchable": 1,
+      "quickSearch": 0,
+      "filterable": 0,
+      "changeable": 0,
+      "timeout": 60,
+      "ext": {}
+    }
+  ]
+}
